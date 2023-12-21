@@ -64,6 +64,8 @@ def send_xapi_to_external_lrs(xapi_data, lrs_url, LRS_AUTH_KEY, LRS_AUTH_SECRET)
         'Content-Type': 'application/json',
         'X-Experience-API-Version': '1.0.3'
     }
+    if not lrs_url.endswith(('statements', 'statements/')):
+        lrs_url += '/statements'
 
     try:
         response = requests.post(

@@ -55,7 +55,7 @@ class CMI5XBlock(XBlock, CompletableXBlockMixin):
     display_name = String(
         display_name=_('Display Name'),
         help=_('Display name'),
-        default='CMI5 module',
+        default='CMI5 Module',
         scope=Scope.settings,
     )
 
@@ -179,7 +179,7 @@ class CMI5XBlock(XBlock, CompletableXBlockMixin):
         """
         credentials = self.get_credentials()
 
-        if request.params.get('statementId') and request.method == 'PUT':
+        if request.params.get('statementId') and request.method == 'PUT' and credentials["EXTERNAL_LRS_URL"]:
             statement_data = get_request_body(request)
             # send statements to external lrs.
             send_xapi_to_external_lrs(
@@ -235,7 +235,6 @@ class CMI5XBlock(XBlock, CompletableXBlockMixin):
         self.height = parse_int(request.params['height'], None)
         self.has_score = request.params['has_score'] == '1'
         self.weight = parse_float(request.params['weight'], 1)
-        self.icon_class = 'problem' if self.has_score else 'video'
 
         response = {'result': 'success', 'errors': []}
         if not hasattr(request.params['file'], 'file'):
@@ -307,6 +306,7 @@ class CMI5XBlock(XBlock, CompletableXBlockMixin):
             )
             return enrollment.id
         except Exception as err:
+            logger.error('Error occurred while getting enrollment id: %s', err)
             return 'anonymous'
 
     def get_enrollment_uuid(self):
@@ -611,5 +611,3 @@ def cmi5_location():
 
 class CMI5Error(Exception):
     """Base exception class for CMI5-related errors."""
-
-    pass

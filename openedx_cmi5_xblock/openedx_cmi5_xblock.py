@@ -611,4 +611,3 @@ def cmi5_location():
 
 class CMI5Error(Exception):
     """Base exception class for CMI5-related errors."""
-

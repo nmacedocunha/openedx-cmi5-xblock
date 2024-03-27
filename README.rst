@@ -20,12 +20,12 @@ Enable XBlock in Studio
 
 Use it in any of the units by adding `CMI5 Module` from Advanced blocks list
 
-Advanced Configuration For sending data to LRS
+Advanced configuration for sending data to LRS
 **********************************************
 
 CMI5 Xblock can be configured to push xAPI statements to a Third-party Learning Record Store. To configure that, use these settings
 
-..  code-block:: python
+.. code-block:: python
 
     XBLOCK_SETTINGS["CMI5XBlock"] = {
         "LRS_AUTH_KEY": "<LRS-activity-provider-key>",

@@ -25,7 +25,7 @@ Advanced configuration for sending data to LRS
 
 CMI5 Xblock can be configured to push xAPI statements to a Third-party Learning Record Store. To configure that, use these settings
 
-.. code-block:: python
+.. code-block::
 
     XBLOCK_SETTINGS["CMI5XBlock"] = {
         "LRS_AUTH_KEY": "<LRS-activity-provider-key>",
